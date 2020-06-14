@@ -7,7 +7,7 @@
   - name: validate
     image: hashicorp/packer:light
     commands:
-    #- apk -U add ansible
+    - apk -U add ansible
     - cd mysql
     - packer validate mysql.json
     #- ansible-playbook --syntax-check ansible/provision.yml
@@ -23,7 +23,7 @@
       AWS_SECRET_KEY:
         from_secret: AWS_SECRET_ACCESS_KEY
     commands:
-    #- apk -U add ansible
+    - apk -U add ansible
     - cd mysql
     - packer build mysql.json
     - cd ../apache-php

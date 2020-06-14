@@ -1,0 +1,37 @@
+{
+  "variables": {
+      "aws_profile": "aula-terraform",
+      "aws_region": "us-east-1",
+      "source_ami_id": "ami-085925f297f89fce1",
+      "ssh_user": "ubuntu",
+      "version": "0.0.1",
+      "commit_hash": "20200614"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "profile": "{{user `aws_profile` }}",
+      "region": "{{ user `aws_region`}}",
+      "source_ami": "{{ user `source_ami_id` }}",
+      "instance_type": "t2.micro",
+      "ssh_username": "{{ user `ssh_user`}}",
+      "ami_name": "Apache/PHP-{{ user `version`}}-{{ user `commit_hash` }}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "./scripts/instala_ansible.sh",
+      "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    },
+    {
+      "type": "ansible",
+      "user": "{{ user `ssh_user`}}",
+      "playbook_file": "./ansible/provision.yml",
+      "ansible_env_vars": [
+        "ANSIBLE_HOST_KEY_CHECKING=false"
+      ]
+    }
+  ]
+
+}

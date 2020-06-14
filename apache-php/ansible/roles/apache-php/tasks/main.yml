@@ -1,0 +1,11 @@
+- name: "Instala as dependências do Apache e PHP"
+  package:
+    name:
+        - php7.2
+        - apache2
+        - libapache2-mod-php7.2
+        - php7.2-gd
+        - php-ssh2
+        - php7.2-mysql
+    state: present
+  become: yes

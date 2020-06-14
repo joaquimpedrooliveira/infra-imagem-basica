@@ -1,0 +1,13 @@
+- name: "Instala o MySQL Server"
+  package:
+    name:
+      - mysql-server-5.7
+      - python-mysqldb
+    state: present
+  become: yes
+- name: Copia a configuração do MySQL
+  copy:
+    src: files/mysqld.cnf
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+  become: yes
+  notify: Reinicia mysql

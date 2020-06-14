@@ -1,0 +1,30 @@
+---
+  kind: pipeline
+  type: docker
+  name: default
+  
+  steps:
+  - name: validate
+    image: hashicorp/packer:light
+    commands:
+    #- apk -U add ansible
+    - cd mysql
+    - packer validate mysql.json
+    #- ansible-playbook --syntax-check ansible/provision.yml
+    - cd ../apache-php
+    - packer validate apache-php.json
+    #- ansible-playbook --syntax-check ansible/provision.yml
+  
+  - name: build
+    image: hashicorp/packer:light
+    environment:
+      AWS_ACCESS_KEY:
+        from_secret: AWS_ACCESS_KEY_ID
+      AWS_SECRET_KEY:
+        from_secret: AWS_SECRET_ACCESS_KEY
+    commands:
+    #- apk -U add ansible
+    - cd mysql
+    - packer build mysql.json
+    - cd ../apache-php
+    - packer build apache-php.json

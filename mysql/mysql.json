@@ -33,6 +33,18 @@
       "ansible_env_vars": [
         "ANSIBLE_HOST_KEY_CHECKING=false"
       ]
+    },
+    {
+      "type": "file",
+      "source": "tests/test_mysql.py",
+      "destination": "/tmp/test_mysql.py"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo pip install testinfra",
+        "sudo pytest -v /tmp/test_mysql.py"
+      ]
     }
   ]
 }

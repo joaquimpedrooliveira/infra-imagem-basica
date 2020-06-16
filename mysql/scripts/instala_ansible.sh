@@ -4,4 +4,4 @@ while [ ! -f /var/lib/cloud/instance/boot-finished ]; do
   sleep 1
 done
 
-apt-get update && apt-get install -y python ansible unzip
+apt-get update && apt-get install -y python python-pip ansible unzip

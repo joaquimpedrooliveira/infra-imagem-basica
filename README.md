@@ -6,7 +6,6 @@ Exemplo de criação de imagens básicas através infraestrutura automatizada.
 - [Drone.io](https://drone.io/) instalado e integrado com o Github
 - Credenciais de acesso à AWS cadastradas como _secret_ no Drone
 
-
 ## Geração das AMIs
 
 ### MySQL
@@ -14,3 +13,5 @@ Exemplo de criação de imagens básicas através infraestrutura automatizada.
 - `packer build mysql.json`
 
 ### Apache/PHP
+- `cd apache-php`
+- `packer build apache-php.json`

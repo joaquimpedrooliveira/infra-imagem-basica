@@ -12,6 +12,6 @@ def test_pkg_installed(host):
   assert php.is_installed
 
 def test_apache_running_and_enabled(host):
-  mysql = host.service('apache2')
-  assert mysql.is_running
-  assert mysql.is_enabled
+  apache = host.service('apache2')
+  assert apache.is_running
+  assert apache.is_enabled

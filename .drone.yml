@@ -10,10 +10,10 @@
     - apk -U add ansible
     - cd mysql
     - packer validate mysql.json
-    #- ansible-playbook --syntax-check ansible/provision.yml
+    - ansible-playbook --syntax-check ansible/provision.yml
     - cd ../apache-php
     - packer validate apache-php.json
-    #- ansible-playbook --syntax-check ansible/provision.yml
+    - ansible-playbook --syntax-check ansible/provision.yml
   
   - name: build
     image: hashicorp/packer:light
